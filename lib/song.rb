@@ -1,4 +1,7 @@
+require_relative './concerns/Findable.rb'
+
 class Song
+  extend Concerns::Findable
   attr_accessor :name, :artist, :genre
   @@all = []
 
@@ -11,13 +14,6 @@ class Song
       self.genre = genre
     end
   end
-
-  # def artist=(artist)
-  #   if self.artist != artist
-  #     @artist = artist
-  #     artist.add_song(self) unless artist.songs.include? (self)
-  #   end
-  # end
 
   def artist=(artist)
     if self.artist.class != Artist
@@ -49,6 +45,27 @@ class Song
     song = self.new(name)
     song.save
     song
+  end
+
+  # def self.find_by_name(name)
+  #   self.all.detect {|song| song.name == name}
+  # end
+  #
+  # def self.find_or_create_by_name(name)
+  #   self.find_by_name(name).nil? ? self.create(name) : self.find_by_name(name)
+  # end
+
+  def self.new_from_filename(filename)
+    if self.find_by_name(filename.split(" - ")[1]).nil?
+      song = self.new(filename.split(" - ")[1])
+      song.artist = Artist.find_or_create_by_name(filename.split(" - ")[0])
+      song.genre = Genre.find_or_create_by_name(filename.split(" - ")[2].chomp(".mp3"))
+      song
+    end
+  end
+
+  def self.create_from_filename(filename)
+    self.new_from_filename(filename).save
   end
 
 end

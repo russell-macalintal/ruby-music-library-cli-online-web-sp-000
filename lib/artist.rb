@@ -1,6 +1,8 @@
 require 'pry'
+require_relative './concerns/Findable.rb'
 
 class Artist
+  extend Concerns::Findable
   attr_accessor :name, :songs
   @@all = []
 
@@ -32,13 +34,6 @@ class Artist
     artist.save
     artist
   end
-
-  # def add_song(song)
-  #   if song.artist.nil? || song.artist.class != Artist
-  #     self.songs << song
-  #     song.artist = self
-  #   end
-  # end
 
   def add_song(song)
     self.songs << song if !self.songs.include?(song)
