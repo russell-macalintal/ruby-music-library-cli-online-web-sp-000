@@ -72,7 +72,7 @@ class MusicLibraryController
       self.list_songs
       puts "Which song number would you like to play?"
       input = gets.strip
-      binding.pry
+      # binding.pry
       integer = input.to_i
       sorted = Song.all.sort_by {|song| song.name}
       if integer >= 1 && integer <= sorted.length
