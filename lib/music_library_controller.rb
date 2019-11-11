@@ -20,8 +20,24 @@ class MusicLibraryController
     if input == "exit"
       return true
     else
+      case command
+      when 'list songs'
+        self.list_songs
+      when 'list artists'
+        self.list_artists
+      when 'list genres'
+        self.list_genres
+      when 'list_artist'
+        self.list_songs_by_artist
+      when 'list_genre'
+        self.list_songs_by_genre
+      when 'play song'
+        self.play_song
+      end
+        
       call
     end
+    
   end
 
   def list_songs
