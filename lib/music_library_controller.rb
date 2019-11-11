@@ -22,7 +22,7 @@ class MusicLibraryController
     # else
     #   call
     # end
-    until input == "exit"
+    unless input == "exit"
       call
     end
     return true
