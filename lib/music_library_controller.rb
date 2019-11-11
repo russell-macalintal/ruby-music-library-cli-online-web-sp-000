@@ -20,7 +20,7 @@ class MusicLibraryController
     if input == "exit"
       return true
     else
-      case command
+      case input
       when 'list songs'
         self.list_songs
       when 'list artists'
