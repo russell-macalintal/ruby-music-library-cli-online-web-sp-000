@@ -54,5 +54,5 @@ class MusicLibraryController
       puts "#{index + 1}. #{song.name} - #{song.genre.name}"
     end
   end
-  
+
 end
